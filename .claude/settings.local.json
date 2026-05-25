@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 \"C:/Users/HP/.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/search.py\" \"dark developer portfolio\" --domain color)",
+      "Bash(python3 \"C:/Users/HP/.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/search.py\" \"portfolio landing page\" --domain landing)",
+      "Bash(python3 \"C:/Users/HP/.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/search.py\" \"portfolio\" --domain product)",
+      "Bash(python3 \"C:/Users/HP/.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/search.py\" \"dark minimal\" --domain style)",
+      "Bash(python3 \"C:/Users/HP/.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/search.py\" \"dark portfolio developer\" --domain typography)",
+      "Bash(python3 \"C:/Users/HP/.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/search.py\" \"dark minimal portfolio UX\" --domain ux)",
+      "Bash(gh auth *)",
+      "PowerShell(gh auth *)"
+    ]
+  }
+}
