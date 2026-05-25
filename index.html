@@ -318,44 +318,6 @@
       font-size: 11px; font-weight: 400; color: var(--t2); letter-spacing: 0.02em;
     }
 
-    /* ─── FREELANCE ──────────────────────────────────────────── */
-    .services-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    }
-    .svc-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-      padding: 28px 24px; display: flex; flex-direction: column;
-      transition: border-color 240ms var(--ease), transform 240ms var(--ease),
-                  background 240ms var(--ease);
-    }
-    .svc-card:hover {
-      border-color: rgba(99,102,241,0.22); background: var(--surface-2);
-      transform: translateY(-2px);
-    }
-    .svc-card.featured {
-      border-color: rgba(99,102,241,0.28); background: var(--accent-dim);
-    }
-    .svc-num {
-      font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 18px;
-    }
-    .svc-name {
-      font-family: var(--ff-display);
-      font-size: 21px; font-weight: 700; color: var(--t1); line-height: 1.2;
-      margin-bottom: 20px; flex: 1;
-    }
-    .svc-price {
-      font-family: var(--ff-display);
-      font-size: 34px; font-weight: 800; color: var(--t1); line-height: 1;
-    }
-    .svc-note { font-size: 12.5px; color: var(--t2); margin-top: 4px; margin-bottom: 22px; }
-    .svc-cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13.5px; font-weight: 600; color: var(--accent-hi);
-      transition: gap 170ms var(--ease), color 170ms var(--ease);
-    }
-    .svc-cta:hover { gap: 10px; color: #fff; }
-
     /* ─── CONTACT ────────────────────────────────────────────── */
     .contact-head {
       font-family: var(--ff-display);
@@ -397,7 +359,6 @@
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 860px) {
       .projects-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       section { padding: 80px 0; }
@@ -419,7 +380,6 @@
   <ul class="nav-links">
     <li><a href="#stack">Stack</a></li>
     <li><a href="#projects">Projets</a></li>
-    <li><a href="#freelance">Freelance</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -470,15 +430,6 @@
     <div class="s-label reveal">Work</div>
     <h2 class="s-heading reveal" data-d="1">Projets récents</h2>
     <div class="projects-grid" id="projects-grid"></div>
-  </div>
-</section>
-
-<!-- ─── FREELANCE ─────────────────────────────────────────────── -->
-<section id="freelance" class="section-divider">
-  <div class="container">
-    <div class="s-label reveal">Services</div>
-    <h2 class="s-heading reveal" data-d="1">Travaillons ensemble</h2>
-    <div class="services-grid" id="services-grid"></div>
   </div>
 </section>
 
@@ -556,12 +507,6 @@ const PROJECTS = [
   },
 ];
 
-const SERVICES = [
-  { num:'01', name:'Site vitrine',                    price:'15 000 DZD', note:'à partir de', featured:false },
-  { num:'02', name:'Site avec réservation en ligne',  price:'35 000 DZD', note:'à partir de', featured:true  },
-  { num:'03', name:'Application web sur mesure',      price:'Devis',      note:'sur demande', featured:false },
-];
-
 // ── RENDER TECH PILLS ─────────────────────────────────────────────
 const techGrid = document.getElementById('tech-grid');
 STACK.forEach((tech, i) => {
@@ -592,24 +537,6 @@ PROJECTS.forEach((p, i) => {
       </div>
       <p class="project-desc">${p.desc}</p>
       <div class="project-pills">${pills}</div>
-    </div>
-  `);
-});
-
-// ── RENDER SERVICES ───────────────────────────────────────────────
-const svcGrid = document.getElementById('services-grid');
-SERVICES.forEach((s, i) => {
-  const subject = encodeURIComponent(`Demande — ${s.name}`);
-  svcGrid.insertAdjacentHTML('beforeend', `
-    <div class="svc-card${s.featured ? ' featured' : ''} reveal" data-d="${i + 1}">
-      <div class="svc-num">${s.num}</div>
-      <div class="svc-name">${s.name}</div>
-      <div class="svc-price">${s.price}</div>
-      <div class="svc-note">${s.note}</div>
-      <a href="mailto:yanisoukaci667@gmail.com?subject=${subject}" class="svc-cta">
-        Me contacter
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
     </div>
   `);
 });
