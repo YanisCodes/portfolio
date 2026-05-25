@@ -370,9 +370,110 @@
       .gh-link { align-self: center; }
       .footer-top { display: none; }
     }
+
+    /* ─── CUSTOM CURSOR ──────────────────────────────────────── */
+    @media (pointer: fine) {
+      body, a, button, .btn, .tech-pill, .project-card, .plink, .clink { cursor: none !important; }
+    }
+    #cur-dot, #cur-ring {
+      display: none;
+      position: fixed; left: 0; top: 0;
+      pointer-events: none; border-radius: 50%;
+      will-change: transform;
+    }
+    @media (pointer: fine) { #cur-dot, #cur-ring { display: block; } }
+    #cur-dot {
+      z-index: 9999;
+      width: 6px; height: 6px;
+      background: rgba(255,255,255,0.92);
+      opacity: 0;
+      transition: opacity 300ms ease;
+    }
+    #cur-ring {
+      z-index: 9998;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(255,255,255,0.30);
+      opacity: 0;
+      transition: border-color 200ms ease, opacity 300ms ease;
+    }
+
+    /* ─── NOISE OVERLAY ──────────────────────────────────────── */
+    #noise {
+      position: fixed; inset: -50%; z-index: 9997; pointer-events: none;
+      width: 200%; height: 200%;
+      opacity: 0.035;
+      background: #ffffff;
+      filter: url(#noise-filter);
+      animation: grain 0.45s steps(1) infinite;
+    }
+    @keyframes grain {
+      0%   { transform: translate(0,0); }
+      10%  { transform: translate(-2%,-3%); }
+      20%  { transform: translate(3%, 1%); }
+      30%  { transform: translate(-1%, 4%); }
+      40%  { transform: translate(2%,-2%); }
+      50%  { transform: translate(-3%, 3%); }
+      60%  { transform: translate(1%,-1%); }
+      70%  { transform: translate(-2%, 2%); }
+      80%  { transform: translate(3%,-3%); }
+      90%  { transform: translate(-1%, 1%); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* ─── HERO GRADIENT MESH ─────────────────────────────────── */
+    .hero-mesh {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero-mesh::before {
+      content: '';
+      position: absolute;
+      width: 85vw; height: 85vw;
+      top: -25%; right: -15%; border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(99,102,241,0.07)  0%,
+        rgba(139,92,246,0.045) 30%,
+        rgba(59,130,246,0.028) 55%,
+        transparent 70%);
+      filter: blur(72px);
+      animation: mesh-a 20s ease-in-out infinite alternate;
+    }
+    .hero-mesh::after {
+      content: '';
+      position: absolute;
+      width: 65vw; height: 65vw;
+      bottom: -20%; left: -8%; border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(59,130,246,0.045) 0%,
+        rgba(99,102,241,0.03)  40%,
+        transparent 65%);
+      filter: blur(60px);
+      animation: mesh-b 27s ease-in-out infinite alternate;
+    }
+    @keyframes mesh-a {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(-5%,6%) scale(1.10); }
+    }
+    @keyframes mesh-b {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(6%,-5%) scale(1.08); }
+    }
   </style>
 </head>
 <body>
+
+<!-- ─── CURSOR ───────────────────────────────────────────────────── -->
+<div id="cur-dot"  aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+
+<!-- ─── NOISE ────────────────────────────────────────────────────── -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <filter id="noise-filter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/>
+    </filter>
+  </defs>
+</svg>
+<div id="noise" aria-hidden="true"></div>
 
 <!-- ─── NAV ──────────────────────────────────────────────────── -->
 <nav id="nav">
@@ -386,7 +487,7 @@
 
 <!-- ─── HERO ──────────────────────────────────────────────────── -->
 <section id="hero">
-  <div class="hero-glow"></div>
+  <div class="hero-mesh" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-inner">
       <div class="h-eyebrow">Béjaïa, Algérie</div>
@@ -468,6 +569,38 @@
 </footer>
 
 <script>
+// ── FEATURE FLAGS ─────────────────────────────────────────────────
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer   = window.matchMedia('(pointer: fine)').matches;
+
+// ── TEXT SCRAMBLE ─────────────────────────────────────────────────
+class TextScramble {
+  constructor() {
+    this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%';
+    this._r = null;
+  }
+  play(el, text, ms) {
+    cancelAnimationFrame(this._r);
+    const t0 = performance.now(), n = text.length;
+    const tick = now => {
+      const p = Math.min((now - t0) / ms, 1);
+      let s = '';
+      for (let i = 0; i < n; i++) {
+        const cp = Math.max(0, Math.min(1, (p * (n + 4) - i) / 4));
+        s += (cp >= 1 || text[i] === ' ') ? text[i]
+           : this.chars[Math.floor(Math.random() * this.chars.length)];
+      }
+      el.textContent = s;
+      if (p < 1) this._r = requestAnimationFrame(tick);
+      else el.textContent = text;
+    };
+    el.style.opacity = '1';
+    this._r = requestAnimationFrame(tick);
+  }
+}
+const nameScrambler = new TextScramble();
+const roleScrambler = new TextScramble();
+
 // ── DATA ──────────────────────────────────────────────────────────
 const ROLES = ['Full-Stack Developer', 'Problem Solver', 'CS Student @ ESTIN'];
 
@@ -545,7 +678,6 @@ PROJECTS.forEach((p, i) => {
 const roleEl = document.getElementById('hero-role');
 let roleIdx = 0;
 
-// Detach the CSS enter animation once it completes so transitions take over
 roleEl.addEventListener('animationend', () => {
   roleEl.style.animation = 'none';
   roleEl.style.opacity = '1';
@@ -558,24 +690,22 @@ const TRANS_OUT = `opacity 260ms ${EASE_OUT}, transform 260ms ${EASE_OUT}, filte
 
 function cycleRole() {
   roleIdx = (roleIdx + 1) % ROLES.length;
-  // exit: fade up + blur
   roleEl.style.transition = TRANS_OUT;
   roleEl.style.opacity = '0';
   roleEl.style.transform = 'translateY(-10px)';
   roleEl.style.filter = 'blur(4px)';
 
   setTimeout(() => {
-    roleEl.textContent = ROLES[roleIdx];
-    // enter from below
     roleEl.style.transition = 'none';
-    roleEl.style.transform = 'translateY(12px)';
-    roleEl.style.filter = 'blur(4px)';
-    // force reflow
-    void roleEl.offsetWidth;
-    roleEl.style.transition = TRANS_OUT;
-    roleEl.style.opacity = '1';
     roleEl.style.transform = 'translateY(0)';
     roleEl.style.filter = 'blur(0px)';
+    void roleEl.offsetWidth;
+    if (reducedMotion) {
+      roleEl.textContent = ROLES[roleIdx];
+      roleEl.style.opacity = '1';
+    } else {
+      roleScrambler.play(roleEl, ROLES[roleIdx], 600);
+    }
   }, 280);
 }
 
@@ -595,6 +725,81 @@ const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
+
+// ── HERO NAME SCRAMBLE ────────────────────────────────────────────
+const nameEl = document.querySelector('.h-name');
+nameEl.style.animation = 'none';
+nameEl.style.opacity   = '0';
+nameEl.style.transform = 'none';
+nameEl.style.filter    = 'none';
+
+if (reducedMotion) {
+  nameEl.style.opacity = '1';
+} else {
+  setTimeout(() => nameScrambler.play(nameEl, 'Yanis Oukaci', 1200), 380);
+}
+
+// ── CUSTOM CURSOR ─────────────────────────────────────────────────
+if (finePointer && !reducedMotion) {
+  const curDot  = document.getElementById('cur-dot');
+  const curRing = document.getElementById('cur-ring');
+  let mx = innerWidth / 2, my = innerHeight / 2;
+  let dx = mx, dy = my, rx = mx, ry = my;
+  let tDs = 1, tRs = 1, cDs = 1, cRs = 1;
+  let started = false;
+
+  addEventListener('mousemove', e => {
+    if (!started) {
+      started = true;
+      curDot.style.opacity  = '1';
+      curRing.style.opacity = '1';
+    }
+    mx = e.clientX; my = e.clientY;
+  }, { passive: true });
+
+  document.addEventListener('mouseover', e => {
+    const h = e.target.closest('a,button,.btn,.tech-pill,.project-card,.plink,.clink');
+    tDs = h ? 2.8 : 1;
+    tRs = h ? 1.55 : 1;
+    curRing.style.borderColor = h ? 'rgba(99,102,241,0.60)' : 'rgba(255,255,255,0.30)';
+  });
+
+  (function loop() {
+    dx += (mx - dx) * 0.16; dy += (my - dy) * 0.16;
+    rx += (mx - rx) * 0.08; ry += (my - ry) * 0.08;
+    cDs += (tDs - cDs) * 0.12;
+    cRs += (tRs - cRs) * 0.10;
+    curDot.style.transform  = `translate(${dx - 3}px,${dy - 3}px) scale(${cDs})`;
+    curRing.style.transform = `translate(${rx - 16}px,${ry - 16}px) scale(${cRs})`;
+    requestAnimationFrame(loop);
+  })();
+}
+
+// ── MAGNETIC BUTTONS ─────────────────────────────────────────────
+if (!reducedMotion) {
+  document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r  = btn.getBoundingClientRect();
+      const nx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+      const ny = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+      btn.style.transition = 'transform 100ms ease';
+      btn.style.transform  = `translate(${nx * 12}px,${ny * 12}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transition = 'transform 600ms cubic-bezier(0.34,1.56,0.64,1)';
+      btn.style.transform  = 'translate(0,0)';
+    });
+    btn.addEventListener('mousedown', () => {
+      btn.style.transition = 'transform 80ms ease';
+      const cur = new DOMMatrix(getComputedStyle(btn).transform);
+      btn.style.transform = `translate(${cur.m41}px,${cur.m42}px) scale(0.96)`;
+    });
+    btn.addEventListener('mouseup', () => {
+      const cur = new DOMMatrix(getComputedStyle(btn).transform);
+      btn.style.transform = `translate(${cur.m41}px,${cur.m42}px) scale(1)`;
+    });
+  });
+}
 </script>
 
 </body>
