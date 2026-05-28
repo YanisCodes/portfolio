@@ -12,7 +12,7 @@ const BASE =
   'inline-flex items-center gap-2 px-[26px] py-[13px] rounded-lg font-semibold text-[14.5px] font-sans active:scale-[0.96] [transition:transform_200ms_var(--ease-snap)]';
 
 const PRIMARY =
-  'text-[#161814] shadow-[0_2px_20px_rgba(155,161,124,0.22)] hover:shadow-[0_4px_36px_rgba(155,161,124,0.38)] hover:-translate-y-[2px] hover:[background-position:100%_50%] [transition:transform_200ms_var(--ease-snap),box-shadow_280ms_var(--ease-snap),background-position_400ms_var(--ease-snap)]';
+  'text-[#212c28] shadow-[0_2px_20px_rgba(94,163,147,0.22)] hover:shadow-[0_4px_36px_rgba(94,163,147,0.4)] hover:-translate-y-[2px] hover:[background-position:100%_50%] [transition:transform_200ms_var(--ease-snap),box-shadow_280ms_var(--ease-snap),background-position_400ms_var(--ease-snap)]';
 
 const PRIMARY_BG = {
   background:

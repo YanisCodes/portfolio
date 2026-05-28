@@ -15,7 +15,7 @@ function StatCard({ target, label, suffix = '' }: { target: number; label: strin
       />
       <div
         ref={ref}
-        className="mb-1.5 font-display text-[40px] font-extrabold leading-none"
+        className="mb-1.5 font-display text-[40px] font-bold leading-none"
         style={{
           background: 'linear-gradient(135deg, var(--color-accent-2), var(--color-accent-4))',
           WebkitBackgroundClip: 'text',

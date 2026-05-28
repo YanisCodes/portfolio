@@ -45,7 +45,7 @@ export default function Cursor() {
       const h = target?.closest(HOVERABLE_SELECTOR);
       tDs = h ? 2.5 : 1;
       tRs = h ? 1.5 : 1;
-      ring.style.borderColor = h ? 'rgba(155,161,124,0.6)' : 'rgba(155,161,124,0.38)';
+      ring.style.borderColor = h ? 'rgba(94,163,147,0.65)' : 'rgba(94,163,147,0.4)';
     };
 
     const loop = () => {
@@ -86,7 +86,7 @@ export default function Cursor() {
         aria-hidden
         className="pointer-events-none fixed left-0 top-0 z-[9998] h-[34px] w-[34px] rounded-full opacity-0 will-change-transform"
         style={{
-          border: '1.5px solid rgba(155,161,124,0.38)',
+          border: '1.5px solid rgba(94,163,147,0.4)',
           transition: 'border-color 200ms ease, opacity 300ms ease',
         }}
       />

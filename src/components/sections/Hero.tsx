@@ -105,7 +105,7 @@ export default function Hero() {
           right: '-15%',
           filter: 'blur(80px)',
           background:
-            'radial-gradient(circle, rgba(155,161,124,0.09) 0%, rgba(212,217,192,0.05) 40%, transparent 70%)',
+            'radial-gradient(circle, rgba(94,163,147,0.1) 0%, rgba(164,213,199,0.05) 40%, transparent 70%)',
         }}
       />
       <div
@@ -118,7 +118,7 @@ export default function Hero() {
           left: '-10%',
           filter: 'blur(80px)',
           background:
-            'radial-gradient(circle, rgba(125,132,96,0.07) 0%, rgba(155,161,124,0.03) 40%, transparent 65%)',
+            'radial-gradient(circle, rgba(74,124,111,0.08) 0%, rgba(94,163,147,0.03) 40%, transparent 65%)',
         }}
       />
 
@@ -130,8 +130,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[12.5px] font-medium"
             style={{
-              background: 'rgba(155,161,124,0.08)',
-              borderColor: 'rgba(155,161,124,0.24)',
+              background: 'rgba(94,163,147,0.1)',
+              borderColor: 'rgba(94,163,147,0.28)',
               color: 'var(--color-accent-3)',
             }}
           >
@@ -160,7 +160,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: nameVisible ? 1 : 0 }}
             transition={{ duration: 0.3 }}
-            className="text-grad-name font-display text-[clamp(56px,10vw,110px)] font-extrabold leading-[0.95] tracking-[-0.03em]"
+            className="text-grad-name font-display text-[clamp(56px,10vw,110px)] font-bold leading-[0.95] tracking-[-0.03em]"
           >
             {nameText}
           </motion.h1>

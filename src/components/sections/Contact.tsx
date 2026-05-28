@@ -24,7 +24,7 @@ function ContactCard({
         className="flex h-11 w-11 items-center justify-center rounded-xl text-[var(--color-accent-2)] transition-[background,transform] duration-300 group-hover:scale-[1.08]"
         style={{
           background: 'var(--color-accent-dim)',
-          border: '1px solid rgba(155,161,124,0.18)',
+          border: '1px solid rgba(94,163,147,0.2)',
         }}
       >
         {icon}
@@ -53,7 +53,7 @@ export default function Contact() {
             height: '80vw',
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(155,161,124,0.07), transparent 65%)',
+              'radial-gradient(circle, rgba(94,163,147,0.08), transparent 65%)',
             filter: 'blur(60px)',
           }}
         />
@@ -73,7 +73,7 @@ export default function Contact() {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <h2 className="mb-4 font-display text-[clamp(40px,7vw,72px)] font-extrabold leading-none tracking-[-0.03em]">
+            <h2 className="mb-4 font-display text-[clamp(40px,7vw,72px)] font-bold leading-none tracking-[-0.03em]">
               <span className="text-grad-soft">
                 Let's build
                 <br />
