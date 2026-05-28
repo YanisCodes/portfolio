@@ -105,7 +105,7 @@ export default function Hero() {
           right: '-15%',
           filter: 'blur(80px)',
           background:
-            'radial-gradient(circle, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.05) 40%, transparent 70%)',
+            'radial-gradient(circle, rgba(217,168,113,0.09) 0%, rgba(244,217,174,0.05) 40%, transparent 70%)',
         }}
       />
       <div
@@ -118,7 +118,7 @@ export default function Hero() {
           left: '-10%',
           filter: 'blur(80px)',
           background:
-            'radial-gradient(circle, rgba(168,85,247,0.06) 0%, rgba(99,102,241,0.03) 40%, transparent 65%)',
+            'radial-gradient(circle, rgba(194,146,94,0.07) 0%, rgba(217,168,113,0.03) 40%, transparent 65%)',
         }}
       />
 
@@ -130,12 +130,12 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[12.5px] font-medium"
             style={{
-              background: 'rgba(52,211,153,0.08)',
-              borderColor: 'rgba(52,211,153,0.2)',
-              color: '#34d399',
+              background: 'rgba(217,168,113,0.08)',
+              borderColor: 'rgba(217,168,113,0.22)',
+              color: 'var(--color-accent-3)',
             }}
           >
-            <span className="pulse-glow inline-block h-[7px] w-[7px] rounded-full bg-[#34d399]" />
+            <span className="pulse-glow inline-block h-[7px] w-[7px] rounded-full bg-[var(--color-accent-2)]" />
             Available for projects
           </motion.div>
 
