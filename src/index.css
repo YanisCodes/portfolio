@@ -2,29 +2,29 @@
 
 /* ─── DESIGN TOKENS ──────────────────────────────────────────── */
 @theme {
-  --color-bg: #0e0d0b;
-  --color-bg-2: #131210;
-  --color-surface: #1a1714;
-  --color-surface-2: #221e1a;
-  --color-surface-3: #2a2620;
+  --color-bg: #0c0d0b;
+  --color-bg-2: #111210;
+  --color-surface: #161814;
+  --color-surface-2: #1e211c;
+  --color-surface-3: #262a23;
 
-  --color-border: rgba(255, 240, 215, 0.06);
-  --color-border-hi: rgba(255, 240, 215, 0.1);
-  --color-border-acc: rgba(217, 168, 113, 0.28);
+  --color-border: rgba(235, 240, 215, 0.06);
+  --color-border-hi: rgba(235, 240, 215, 0.1);
+  --color-border-acc: rgba(155, 161, 124, 0.3);
 
-  /* Single warm honey accent, 4 shades from deep → highlight */
-  --color-accent-1: #c2925e;
-  --color-accent-2: #d9a871;
-  --color-accent-3: #e8bd8c;
-  --color-accent-4: #f4d9ae;
-  --color-accent-rgb: 217, 168, 113;
-  --color-accent-glow: rgba(217, 168, 113, 0.28);
-  --color-accent-dim: rgba(217, 168, 113, 0.1);
-  --color-accent-soft: rgba(217, 168, 113, 0.15);
+  /* Single sage green accent, 4 shades from deep → highlight */
+  --color-accent-1: #7d8460;
+  --color-accent-2: #9ba17c;
+  --color-accent-3: #b5bd9d;
+  --color-accent-4: #d4d9c0;
+  --color-accent-rgb: 155, 161, 124;
+  --color-accent-glow: rgba(155, 161, 124, 0.3);
+  --color-accent-dim: rgba(155, 161, 124, 0.1);
+  --color-accent-soft: rgba(155, 161, 124, 0.16);
 
-  --color-t1: #f3eee5;
-  --color-t2: #8e867a;
-  --color-t3: #3e3933;
+  --color-t1: #edefe6;
+  --color-t2: #86887a;
+  --color-t3: #3a3c35;
 
   --font-display: 'Space Grotesk', sans-serif;
   --font-sans: 'Inter', sans-serif;
@@ -69,10 +69,10 @@ a {
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(217, 168, 113, 0.55);
+    box-shadow: 0 0 0 0 rgba(155, 161, 124, 0.55);
   }
   50% {
-    box-shadow: 0 0 0 6px rgba(217, 168, 113, 0);
+    box-shadow: 0 0 0 6px rgba(155, 161, 124, 0);
   }
 }
 @keyframes bounce-down {

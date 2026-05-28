@@ -24,7 +24,7 @@ function ContactCard({
         className="flex h-11 w-11 items-center justify-center rounded-xl text-[var(--color-accent-2)] transition-[background,transform] duration-300 group-hover:scale-[1.08]"
         style={{
           background: 'var(--color-accent-dim)',
-          border: '1px solid rgba(217,168,113,0.18)',
+          border: '1px solid rgba(155,161,124,0.18)',
         }}
       >
         {icon}
@@ -53,7 +53,7 @@ export default function Contact() {
             height: '80vw',
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(217,168,113,0.07), transparent 65%)',
+              'radial-gradient(circle, rgba(155,161,124,0.07), transparent 65%)',
             filter: 'blur(60px)',
           }}
         />

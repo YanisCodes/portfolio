@@ -105,7 +105,7 @@ export default function Hero() {
           right: '-15%',
           filter: 'blur(80px)',
           background:
-            'radial-gradient(circle, rgba(217,168,113,0.09) 0%, rgba(244,217,174,0.05) 40%, transparent 70%)',
+            'radial-gradient(circle, rgba(155,161,124,0.09) 0%, rgba(212,217,192,0.05) 40%, transparent 70%)',
         }}
       />
       <div
@@ -118,7 +118,7 @@ export default function Hero() {
           left: '-10%',
           filter: 'blur(80px)',
           background:
-            'radial-gradient(circle, rgba(194,146,94,0.07) 0%, rgba(217,168,113,0.03) 40%, transparent 65%)',
+            'radial-gradient(circle, rgba(125,132,96,0.07) 0%, rgba(155,161,124,0.03) 40%, transparent 65%)',
         }}
       />
 
@@ -130,8 +130,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[12.5px] font-medium"
             style={{
-              background: 'rgba(217,168,113,0.08)',
-              borderColor: 'rgba(217,168,113,0.22)',
+              background: 'rgba(155,161,124,0.08)',
+              borderColor: 'rgba(155,161,124,0.24)',
               color: 'var(--color-accent-3)',
             }}
           >
