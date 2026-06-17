@@ -1,40 +1,42 @@
 export type Project = {
-  name: string;
-  desc: string;
-  stack: string[];
-  github: string | null;
-  live: string | null;
-  featured?: boolean;
+  title: string;
+  href: string;
+  image: string;
+  span: number; // md:col-span (7 / 5 / 5 / 7 alternating)
+  aspect: string; // tailwind aspect class
 };
 
-export const PROJECTS: Project[] = [
+export const WORKS: Project[] = [
   {
-    name: 'AskUni',
-    desc: 'Collaborative university platform — WebRTC video sessions, real-time Supabase collaboration, and focus monitoring via Google MediaPipe.',
-    stack: ['React', 'Vite', 'Django REST', 'WebRTC', 'Supabase Realtime', 'MediaPipe'],
-    github: 'https://github.com/YanisCodes/askuni',
-    live: 'https://askuni-two.vercel.app',
-    featured: true,
+    title: 'AskUni',
+    href: 'https://askuni-two.vercel.app',
+    image:
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80',
+    span: 7,
+    aspect: 'aspect-[16/10]',
   },
   {
-    name: 'IT-Fix',
-    desc: 'IT support ticketing extranet with request management, real-time tracking, and continuous deployment via Vercel CI/CD.',
-    stack: ['Next.js', 'Supabase', 'Vercel'],
-    github: 'https://github.com/YanisCodes/it-fix',
-    live: 'https://it-fix.vercel.app',
+    title: 'IT-Fix',
+    href: 'https://it-fix.vercel.app',
+    image:
+      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
+    span: 5,
+    aspect: 'aspect-[16/10]',
   },
   {
-    name: 'StudyGPT',
-    desc: 'Smart Flutter study timer app with fatigue detection and adaptive break recommendations.',
-    stack: ['Dart', 'Flutter'],
-    github: 'https://github.com/YanisCodes/StudyGPT',
-    live: null,
+    title: 'Resumind',
+    href: 'https://resum-ai-tau.vercel.app',
+    image:
+      'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1200&q=80',
+    span: 5,
+    aspect: 'aspect-[16/10]',
   },
   {
-    name: 'Resumind',
-    desc: 'AI-powered CV generator — transforms a student profile into an optimized professional document in seconds.',
-    stack: ['JavaScript', 'AI'],
-    github: 'https://github.com/YanisCodes/Resumind',
-    live: 'https://resum-ai-tau.vercel.app',
+    title: 'StudyGPT',
+    href: 'https://github.com/YanisCodes/StudyGPT',
+    image:
+      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80',
+    span: 7,
+    aspect: 'aspect-[16/10]',
   },
 ];
