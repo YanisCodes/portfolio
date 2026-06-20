@@ -1,42 +1,54 @@
 export type Project = {
   title: string;
+  tagline: string;
+  stack: string[];
   href: string;
-  image: string;
+  liveLabel: string; // small caps label e.g. "Vercel · Live"
   span: number; // md:col-span (7 / 5 / 5 / 7 alternating)
-  aspect: string; // tailwind aspect class
+  aspect: string;
+  /** Subtle radial gradient hue for the card background (HSL angle) */
+  hue: number;
 };
 
 export const WORKS: Project[] = [
   {
     title: 'AskUni',
+    tagline: 'Study together in real time.',
+    stack: ['React', 'Django REST', 'WebRTC', 'Supabase', 'MediaPipe'],
     href: 'https://askuni-two.vercel.app',
-    image:
-      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80',
+    liveLabel: 'Live · Vercel',
     span: 7,
     aspect: 'aspect-[16/10]',
+    hue: 200,
   },
   {
     title: 'IT-Fix',
+    tagline: 'Tickets, tracked clean.',
+    stack: ['Next.js', 'Supabase', 'Vercel'],
     href: 'https://it-fix.vercel.app',
-    image:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
+    liveLabel: 'Live · Vercel',
     span: 5,
     aspect: 'aspect-[16/10]',
+    hue: 30,
   },
   {
     title: 'Resumind',
+    tagline: 'AI résumés for students.',
+    stack: ['JavaScript', 'AI'],
     href: 'https://resum-ai-tau.vercel.app',
-    image:
-      'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1200&q=80',
+    liveLabel: 'Live · Vercel',
     span: 5,
     aspect: 'aspect-[16/10]',
+    hue: 145,
   },
   {
     title: 'StudyGPT',
+    tagline: 'Focus timer that knows when you crash.',
+    stack: ['Flutter', 'Dart'],
     href: 'https://github.com/YanisCodes/StudyGPT',
-    image:
-      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80',
+    liveLabel: 'Source · GitHub',
     span: 7,
     aspect: 'aspect-[16/10]',
+    hue: 280,
   },
 ];

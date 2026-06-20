@@ -1,42 +1,34 @@
-export type JournalEntry = {
+export type CurrentlyItem = {
   title: string;
   href: string;
-  image: string;
-  readTime: string;
-  date: string;
+  /** Short verb label shown on the round chip — e.g. "Building", "Learning". */
+  verb: string;
+  meta: string; // small right-side info, e.g. "year 2 · ESTIN"
 };
 
-export const JOURNAL: JournalEntry[] = [
+export const CURRENTLY: CurrentlyItem[] = [
   {
-    title: 'Building AskUni — real-time video for studying together',
-    href: 'https://github.com/YanisCodes/askuni',
-    image:
-      'https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80',
-    readTime: '6 min read',
-    date: 'Apr 2026',
+    verb: 'Building',
+    title: 'AskUni — collaborative study with WebRTC + focus tracking',
+    href: 'https://askuni-two.vercel.app',
+    meta: 'Live · 2026',
   },
   {
-    title: 'Rebuilding my portfolio with Vite, React & Tailwind v4',
-    href: '#',
-    image:
-      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80',
-    readTime: '4 min read',
-    date: 'Mar 2026',
+    verb: 'Studying',
+    title: 'Computer Science — Algorithms, OS, Databases',
+    href: 'https://www.estin.dz/',
+    meta: 'Year 2 · ESTIN Béjaïa',
   },
   {
-    title: 'Two years of CS at ESTIN — what I actually learned',
-    href: '#',
-    image:
-      'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=600&q=80',
-    readTime: '5 min read',
-    date: 'Feb 2026',
-  },
-  {
-    title: 'Picking up Flutter as a web developer',
+    verb: 'Learning',
+    title: 'Flutter — pushing StudyGPT past the first beta',
     href: 'https://github.com/YanisCodes/StudyGPT',
-    image:
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80',
-    readTime: '4 min read',
-    date: 'Jan 2026',
+    meta: 'In progress',
+  },
+  {
+    verb: 'Shipping',
+    title: 'Small tools & side experiments',
+    href: 'https://github.com/YanisCodes',
+    meta: 'GitHub',
   },
 ];

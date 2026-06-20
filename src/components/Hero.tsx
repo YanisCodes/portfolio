@@ -57,7 +57,7 @@ export default function Hero() {
       <div className="relative z-10 flex min-h-screen items-center justify-center px-6">
         <div className="flex flex-col items-center text-center">
           <div className="blur-in mb-8 text-xs uppercase tracking-[0.3em] text-muted">
-            COLLECTION '26
+            WORKS '26
           </div>
 
           <h1 className="name-reveal mb-6 font-display text-6xl italic leading-[0.9] tracking-tight text-text-primary md:text-8xl lg:text-9xl">
@@ -76,8 +76,9 @@ export default function Hero() {
           </p>
 
           <p className="blur-in mb-12 max-w-md text-sm text-muted md:text-base">
-            Designing seamless digital interactions by focusing on the unique
-            nuances which bring systems to life.
+            Second-year CS student at ESTIN, building full-stack web and mobile
+            apps. Quietly obsessed with the small details that make software
+            feel right.
           </p>
 
           <div className="blur-in inline-flex flex-wrap items-center justify-center gap-4">
