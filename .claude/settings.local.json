@@ -8,7 +8,11 @@
       "Bash(python3 \"C:/Users/HP/.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/search.py\" \"dark portfolio developer\" --domain typography)",
       "Bash(python3 \"C:/Users/HP/.claude/skills/ui-ux-pro-max/src/ui-ux-pro-max/scripts/search.py\" \"dark minimal portfolio UX\" --domain ux)",
       "Bash(gh auth *)",
-      "PowerShell(gh auth *)"
+      "PowerShell(gh auth *)",
+      "Bash(git -C \"/c/Users/HP/Desktop/school ts 2/projects/register\" log --oneline -3)",
+      "Read(//c/Users/HP/Desktop/school ts 2/projects/register//**)",
+      "Bash(git -C \"/c/Users/HP/Desktop/school ts 2/projects/register\" remote -v)",
+      "Bash(git -C \"/c/Users/HP/Desktop/school ts 2/projects/register\" checkout -b add-vercel-verification)"
     ]
   }
 }

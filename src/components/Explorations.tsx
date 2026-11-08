@@ -3,36 +3,56 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TOOLKIT, type Tool } from '../data/explorations';
+import Magnetic from './Magnetic';
+import { trackSpotlight } from '../lib/spotlight';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function ToolCard({
   tool,
+  index,
   rotate,
   onClick,
 }: {
   tool: Tool;
+  index: number;
   rotate: number;
   onClick: () => void;
 }) {
   return (
     <button
       onClick={onClick}
-      style={{
-        transform: `rotate(${rotate}deg)`,
-        background: `
-          radial-gradient(circle at 30% 25%, hsl(${tool.hue} 50% 18% / 0.55), transparent 60%),
-          radial-gradient(circle at 75% 80%, hsl(${(tool.hue + 50) % 360} 60% 20% / 0.4), transparent 55%)
-        `,
-      }}
-      className="pointer-events-auto group relative block aspect-square w-full max-w-[320px] overflow-hidden rounded-2xl border border-stroke bg-surface transition-transform duration-500 hover:scale-[1.03]"
+      onMouseMove={trackSpotlight}
+      data-cursor="Open"
+      style={{ transform: `rotate(${rotate}deg)` }}
+      className="spotlight pointer-events-auto group relative block aspect-square w-full max-w-[320px] overflow-hidden rounded-[28px] border border-stroke bg-surface text-left transition-[scale,rotate] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.04]"
     >
-      <div className="halftone pointer-events-none absolute inset-0 opacity-15 mix-blend-multiply" />
-      <div className="relative flex h-full flex-col items-start justify-between p-6">
-        <span className="text-[10.5px] uppercase tracking-[0.25em] text-muted">
-          {tool.tag}
-        </span>
-        <span className="font-display text-4xl italic leading-none text-text-primary md:text-5xl lg:text-6xl">
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="mesh-blob -left-[15%] -top-[15%] h-[70%] w-[70%] opacity-45 transition-opacity duration-700 group-hover:opacity-80"
+          style={{ background: `hsl(${tool.hue} 55% 32%)` }}
+        />
+        <div
+          className="mesh-blob -bottom-[20%] -right-[15%] h-[60%] w-[60%] opacity-35"
+          style={{
+            background: `hsl(${(tool.hue + 50) % 360} 60% 28%)`,
+            animationDelay: '-8s',
+          }}
+        />
+      </div>
+      <div className="grid-lines absolute inset-0" />
+      <div className="halftone pointer-events-none absolute inset-0 opacity-20 mix-blend-multiply" />
+      <div className="relative z-[2] flex h-full flex-col justify-between p-6">
+        <div className="flex items-center justify-between text-[10.5px] uppercase tracking-[0.25em] text-text-primary/60">
+          <span className="inline-flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: `hsl(${tool.hue} 70% 65%)` }} />
+            {tool.tag}
+          </span>
+          <span className="font-display text-sm normal-case italic tracking-normal">
+            {String(index + 1).padStart(2, '0')}/{String(TOOLKIT.length).padStart(2, '0')}
+          </span>
+        </div>
+        <span className="font-display text-4xl italic leading-none text-text-primary transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 md:text-5xl lg:text-6xl">
           {tool.name}
         </span>
       </div>
@@ -92,36 +112,39 @@ export default function Explorations() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[300vh] overflow-hidden bg-bg">
+    <section id="toolkit" ref={sectionRef} className="relative min-h-[300vh] overflow-hidden bg-bg">
       {/* Layer 1: pinned center */}
       <div
         ref={contentRef}
         className="relative z-10 flex h-screen items-center justify-center px-6"
       >
         <div className="max-w-2xl text-center">
-          <div className="mb-5 flex items-center justify-center gap-3">
-            <span className="h-px w-8 bg-stroke" />
-            <span className="text-xs uppercase tracking-[0.3em] text-muted">
-              Toolkit
+          <div className="mb-6 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.3em] text-muted">
+            <span className="font-display text-base normal-case italic tracking-normal text-text-primary/70">
+              (04)
             </span>
             <span className="h-px w-8 bg-stroke" />
+            Toolkit
           </div>
-          <h2 className="mb-5 text-4xl text-text-primary md:text-6xl lg:text-7xl">
-            Tools of the <em className="font-display italic">craft</em>
+          <h2 className="mb-6 text-5xl leading-[1] tracking-[-0.03em] text-text-primary md:text-7xl lg:text-8xl">
+            Tools of the <em className="text-gradient font-display italic">craft</em>
           </h2>
-          <p className="mx-auto mb-8 max-w-md text-sm text-muted md:text-base">
+          <p className="mx-auto mb-10 max-w-md text-sm leading-relaxed text-muted md:text-base">
             What I reach for when I build — from interface to database.
           </p>
-          <a
-            href="https://github.com/YanisCodes"
-            target="_blank"
-            rel="noopener"
-            className="gradient-border-hover relative inline-flex rounded-full"
-          >
-            <span className="inline-flex items-center gap-2 rounded-full border border-stroke bg-bg px-5 py-2.5 text-sm text-text-primary">
-              See it in repos <span aria-hidden>↗</span>
-            </span>
-          </a>
+          <Magnetic>
+            <a
+              href="https://github.com/YanisCodes"
+              target="_blank"
+              rel="noopener"
+              className="group inline-flex items-center gap-3 rounded-full border border-stroke bg-bg/60 py-2 pl-5 pr-2 text-sm text-text-primary backdrop-blur-md transition-colors duration-300 hover:border-text-primary/40"
+            >
+              See it in repos
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-text-primary text-bg transition-transform duration-500 group-hover:rotate-45">
+                ↗
+              </span>
+            </a>
+          </Magnetic>
         </div>
       </div>
 
@@ -133,6 +156,7 @@ export default function Explorations() {
               <ToolCard
                 key={item.name}
                 tool={item}
+                index={TOOLKIT.indexOf(item)}
                 rotate={i % 2 === 0 ? -2 : 1.5}
                 onClick={() => setLightbox(TOOLKIT.indexOf(item))}
               />
@@ -143,6 +167,7 @@ export default function Explorations() {
               <ToolCard
                 key={item.name}
                 tool={item}
+                index={TOOLKIT.indexOf(item)}
                 rotate={i % 2 === 0 ? 2 : -1.5}
                 onClick={() => setLightbox(TOOLKIT.indexOf(item))}
               />
@@ -172,7 +197,7 @@ export default function Explorations() {
               <div className="mb-3 text-[11px] uppercase tracking-[0.3em] text-muted">
                 {TOOLKIT[lightbox].tag}
               </div>
-              <div className="font-display text-7xl italic text-text-primary md:text-8xl">
+              <div className="text-gradient font-display text-7xl italic md:text-9xl">
                 {TOOLKIT[lightbox].name}
               </div>
             </motion.div>
