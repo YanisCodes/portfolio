@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AnimatePresence, motion } from 'framer-motion';
 import HlsVideo from './HlsVideo';
+import GalaxyCanvas from './GalaxyCanvas';
 import Magnetic from './Magnetic';
 import { HLS_VIDEO_URL, ROLES } from '../data/constants';
 import { useLocalTime } from '../lib/useLocalTime';
@@ -83,20 +84,21 @@ export default function Hero({ ready }: { ready: boolean }) {
     <section id="home" ref={rootRef} className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
       {/* Background video */}
       <div ref={videoWrapRef} className="absolute inset-0 z-0 overflow-hidden will-change-transform">
+        <GalaxyCanvas className="absolute inset-0" centerY={0.14} />
         <HlsVideo
           src={HLS_VIDEO_URL}
           className="absolute left-1/2 top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover"
         />
       </div>
-      <div className="absolute inset-0 z-0 bg-black/35" />
-      <div className="grid-lines absolute inset-0 z-0 opacity-60" />
+      <div className="absolute inset-0 z-0 bg-black/20" />
+      <div className="grid-lines absolute inset-0 z-0 opacity-30" />
       <div
         ref={glowRef}
         aria-hidden
         className="pointer-events-none absolute left-0 top-0 z-0 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25 mix-blend-screen blur-[90px]"
         style={{ background: 'radial-gradient(circle, #89aacc, transparent 65%)' }}
       />
-      <div className="absolute inset-x-0 bottom-0 z-0 h-64 bg-gradient-to-t from-bg via-bg/70 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 z-0 h-48 bg-gradient-to-t from-bg to-transparent" />
 
       {/* Content */}
       <div ref={contentRef} className="relative z-10 flex h-full items-center justify-center px-4">

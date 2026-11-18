@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
 import HlsVideo from './HlsVideo';
+import GalaxyCanvas from './GalaxyCanvas';
 import Magnetic from './Magnetic';
 import { CONTACT_EMAIL, HLS_VIDEO_URL, SOCIALS } from '../data/constants';
 import { useLocalTime } from '../lib/useLocalTime';
@@ -60,13 +61,14 @@ export default function ContactFooter() {
     <footer id="contact" ref={rootRef} className="relative overflow-hidden bg-bg pb-8 pt-10 md:pb-10">
       {/* Background video (flipped) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
+        <GalaxyCanvas className="absolute inset-0" centerY={0.88} />
         <HlsVideo
           src={HLS_VIDEO_URL}
           className="absolute left-1/2 top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 scale-y-[-1] object-cover"
         />
-        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-bg to-transparent" />
-        <div className="grid-lines absolute inset-0 opacity-70" />
+        <div className="grid-lines absolute inset-0 opacity-30" />
       </div>
 
       <div className="relative z-10">
